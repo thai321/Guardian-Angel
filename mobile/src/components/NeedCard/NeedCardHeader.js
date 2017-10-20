@@ -5,68 +5,47 @@ import Touchable from '@appandflow/touchable';
 
 import { fakeAvatar } from '../../utils/constants';
 import { withNavigation } from 'react-navigation';
+import Avatar from '../Avatar/Avatar'
 
-const AVATAR_SIZE = 20;
-const AVATAR_RADIUS = AVATAR_SIZE / 2;
+// const AVATAR_SIZE = 30;
+// const AVATAR_RADIUS = AVATAR_SIZE / 2;
 
 const Root = styled.View`
   height: 50;
   flexDirection: row;
   alignItems: center;
+  justifyContent: space-between;
+  borderBottomWidth: 0.5px;
+  borderColor: rgba(0,0,0,0.5);
 `;
 
-const AvatarContainer = styled.View`
-  flex: 0.2;
-  paddingLeft: 5;
-  alignItems: flex-start;
-  justifyContent: center;
-  backgroundColor: red;
-`;
-
-  const Avatar = styled.Image`
-  height: ${ AVATAR_SIZE } ;
-  width: ${ AVATAR_SIZE } ;
-  borderRadius: ${ AVATAR_RADIUS };
-`;
-
-//
 const MetaContainer = styled.View`
   flex: 1;
   alignSelf: stretch;
 `;
 
 const MetaTopContainer = styled.View`
-  flex: 1;
-  alignSelf: stretch;
+  flex: 0.8;
   flexDirection: row;
   alignItems: center;
   justifyContent: flex-start;
-`;
-
-const MetaBottomContainer = styled.View`
-  flex: 0.8;
-  backgroundColor; black;
-  alignSelf: stretch;
-  alignItems: flex-start;
-  justifyContent: center;
 `;
 
 const Button = styled(Touchable).attrs({
   feedback: 'opacity'
 })`
   flex: 1;
-  backgroundColor: green;
   flexDirection: row;
   alignItems: center;
-  justifyContent: space-around;
-  paddingHorizontal: 32px;
+  justifyContent: flex-start;
   marginLeft: 5px;
 `;
 
 const ButtonText = styled.Text`
-  fontSize: 14;
-  fontWeight: 500;
-  color: ${ props => props.theme.LIGHT_GREY }
+  alignSelf: stretch;
+  fontSize: 16;
+  fontWeight: 700;
+  color: ${ props => props.theme.LIGHT_BLUE }
 `;
 // will come from back end later
 // const username = 'itsClay';
@@ -76,23 +55,19 @@ const ButtonText = styled.Text`
 // const avatar = fakeAvatar;
 
 function NeedCardHeader(props) {
-  title = props.title
-  avatar = props.avatar
-  navigate = props.navigation.navigate
+  const title = props.title
+  const navigate = props.navigation.navigate
+  const user = props.user
   return (
     <Root>
-     <MetaContainer>
-       <MetaTopContainer>
-         <Button onPress={() => navigate('Profile', {name: 'Brent'})}>
-           <ButtonText>
-             {title}
-           </ButtonText>
-         </Button>
-       </MetaTopContainer>
-     </MetaContainer>
-     <AvatarContainer>
-       <Avatar source={{ uri: avatar || fakeAvatar }} />
-     </AvatarContainer>
+     <MetaTopContainer>
+       <Button onPress={() => navigate('Need', {need: props.need})}>
+         <ButtonText>
+           {title}
+         </ButtonText>
+       </Button>
+     </MetaTopContainer>
+     <Avatar user={user} size={30} touchable={true}/>
     </Root>
   )
 }

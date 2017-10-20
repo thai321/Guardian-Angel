@@ -8,21 +8,42 @@ import { colors } from '../../utils/constants';
 const ICON_SIZE = 20;
 
 const Root = styled.View`
-  height: 40;
-  backgroundColor: pink;
+  minHeight: 20;
   flexDirection: row;
+  justifyContent: space-between;
 `
+
+const InfoContainer = styled.View`
+flexDirection: row;
+`;
+
+const ZipCode = styled.View`
+flexDirection: row;
+marginRight: 5;
+`;
+
+const TagsContainer = styled.View`
+flexDirection: row;
+`;
+
+const Tag = styled(Touchable).attrs({
+  feedback: 'opacity'
+})`
+  flexDirection: row;
+  justifyContent: flex-start;
+  marginRight: 5px;
+  backgroundColor: ${props => props.theme.TAG_BLUE}
+  paddingHorizontal: 10px;
+  borderRadius: 5px;
+
+`;
 
 const Button = styled(Touchable).attrs({
   feedback: 'opacity'
 })`
-  flex: 1;
-  backgroundColor: green;
   flexDirection: row;
-  alignItems: center;
-  justifyContent: space-around;
-  paddingHorizontal: 32px;
-  marginLeft: 5px;
+  justifyContent: flex-start;
+  marginRight: 5px;
 `;
 
 const ButtonText = styled.Text`
@@ -31,39 +52,38 @@ const ButtonText = styled.Text`
   color: ${ props => props.theme.LIGHT_GREY }
 `;
 
+const TagText = styled.Text`
+  fontSize: 14;
+  fontWeight: 500;
+  alignSelf: center;
+  color: ${ props => props.theme.DARK_GREY }
+`;
+
 const favoriteCount = 3;
 const isFavorited = false;
 const location = 94114;
 const tag = 'housing'
 
-function NeedCardBottom() {
+function NeedCardBottom({area}) {
   return (
     <Root>
-      <Button>
-        <EvilIcons
-          name="location"
-          size={ICON_SIZE}
-          color={colors.LIGHT_GREY}
-        />
-        <ButtonText>
-          { location }
-        </ButtonText>
-      </Button>
-      <Button>
-        <Ionicons
-          name="md-pricetags"
-          size={ICON_SIZE}
-          color={colors.LIGHT_GREY}
-        />
-        <ButtonText>
-          { tag }
-        </ButtonText>
-      </Button>
-      <Button>
-        <ButtonText>
-          Follow
-        </ButtonText>
-      </Button>
+      <InfoContainer>
+        <ZipCode>
+          <EvilIcons
+            name="location"
+            size={ICON_SIZE}
+            color={colors.LIGHT_GREY}
+            style={{marginRight: '1%'}}
+            />
+          <Button>
+            <ButtonText>
+              { area.zipcode }
+            </ButtonText>
+          </Button>
+        </ZipCode>
+
+      </InfoContainer>
+
     </Root>
   )
 }
