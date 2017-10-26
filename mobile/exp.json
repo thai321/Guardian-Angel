@@ -21,14 +21,12 @@
             }
           }
       },
-      "hideExponentText": false
-    },
     "packagerOpts": {
       "assetExts": ["ttf", "mp4"]
     },
     "ios": {
       "supportsTablet": false,
-      "bundleIdentifier": "com.belleandstone.foundz"
+      "bundleIdentifier": "com.angel.guardian"
     }
   }
 }
